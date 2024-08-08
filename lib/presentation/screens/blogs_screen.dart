@@ -66,6 +66,12 @@ class _BlogsScreenState extends State<BlogsScreen> {
         title: const Text("Your Blogs"),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.read<BlogBloc>().add(BlogEventFetch());
+        },
+        label: const Text("Refresh"),
+      ),
       body: BlocBuilder<BlogBloc, BlogState>(
         builder: (context, state) {
           if (state is BlogStateFailure) {
